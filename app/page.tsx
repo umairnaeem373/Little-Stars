@@ -1,113 +1,472 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+import React, { useState, useEffect, useCallback } from 'react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { 
+  Star, 
+  Heart, 
+  Shield, 
+  Users, 
+  Clock, 
+  Award,
+  Phone,
+  Mail,
+  MapPin,
+  Menu,
+  X,
+  Baby,
+  CheckCircle
+} from 'lucide-react'
+import TestimonialCard from '@/components/common/TestimonialCard'
+import Footer from '@/components/common/Footer'
+import ServicesCard from '@/components/common/ServicesCard'
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+export interface Service {
+  icon: React.ReactNode
+  title: string
+  description: string
 }
+
+export interface Testimonial {
+  name: string
+  content: string
+  rating: number
+  image: string
+}
+
+interface Program {
+  title: string
+  age: string
+  description: string
+  features: string[]
+  color: string
+}
+
+const DaycareLandingPage: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const services: Service[] = [
+    {
+      icon: <Heart className="h-8 w-8 text-pink-500" />,
+      title: "Loving Care",
+      description: "Nurturing environment where every child feels loved, safe, and valued every single day."
+    },
+    {
+      icon: <Shield className="h-8 w-8 text-blue-500" />,
+      title: "Safe Environment",
+      description: "State-of-the-art security systems and child-proofed facilities ensure maximum safety."
+    },
+    {
+      icon: <Users className="h-8 w-8 text-green-500" />,
+      title: "Expert Staff",
+      description: "Certified educators with years of experience in early childhood development."
+    },
+    {
+      icon: <Clock className="h-8 w-8 text-purple-500" />,
+      title: "Flexible Hours",
+      description: "Extended hours from 6 AM to 7 PM to accommodate working parents' schedules."
+    }
+  ]
+
+  const programs: Program[] = [
+    {
+      title: "Infant Care",
+      age: "6 weeks - 12 months",
+      description: "Gentle, individualized care for your precious little one",
+      features: ["Flexible feeding schedules", "Diaper changing", "Tummy time", "Sensory play"],
+      color: "bg-pink-50 border-pink-200"
+    },
+    {
+      title: "Toddler Program",
+      age: "1 - 2 years",
+      description: "Supporting first steps into independence and exploration",
+      features: ["Potty training support", "Language development", "Social skills", "Creative play"],
+      color: "bg-blue-50 border-blue-200"
+    },
+    {
+      title: "Preschool",
+      age: "3 - 4 years",
+      description: "School readiness through play-based learning",
+      features: ["Pre-literacy skills", "Math concepts", "Art & music", "School preparation"],
+      color: "bg-green-50 border-green-200"
+    }
+  ]
+
+  const testimonials: Testimonial[] = [
+    {
+      name: "Sarah Johnson",
+      content: "Little Stars has been incredible for our daughter Emma. She's learned so much and made wonderful friends. The teachers are amazing!",
+      rating: 5,
+      image: "👩‍💼"
+    },
+    {
+      name: "Michael Chen",
+      content: "As a single dad, finding quality childcare was crucial. The staff here treats my son like family. Couldn't be happier!",
+      rating: 5,
+      image: "👨‍💻"
+    },
+    {
+      name: "Lisa Rodriguez",
+      content: "The communication is outstanding. I get daily updates and photos of my twins. It gives me peace of mind at work.",
+      rating: 5,
+      image: "👩‍⚕️"
+    }
+  ]
+
+  const smoothScroll = (targetId: string) => {
+    const element = document.getElementById(targetId)
+    element?.scrollIntoView({ behavior: 'smooth' })
+    setIsMenuOpen(false)
+  }
+
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
+      {/* Navigation */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                <Star className="h-6 w-6 text-white" />
+              </div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Little Stars
+              </span>
+            </div>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-8">
+              <button onClick={() => smoothScroll('home')} className="text-gray-700 hover:text-purple-600 transition-colors">
+                Home
+              </button>
+              <button onClick={() => smoothScroll('about')} className="text-gray-700 hover:text-purple-600 transition-colors">
+                About
+              </button>
+              <button onClick={() => smoothScroll('programs')} className="text-gray-700 hover:text-purple-600 transition-colors">
+                Programs
+              </button>
+              <button onClick={() => smoothScroll('testimonials')} className="text-gray-700 hover:text-purple-600 transition-colors">
+                Reviews
+              </button>
+              <button onClick={() => smoothScroll('contact')} className="text-gray-700 hover:text-purple-600 transition-colors">
+                Contact
+              </button>
+              <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
+                Enroll Now
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="md:hidden absolute top-16 left-0 right-0 bg-white shadow-lg rounded-b-lg">
+              <div className="px-4 py-6 space-y-4">
+                <button onClick={() => smoothScroll('home')} className="block w-full text-left text-gray-700 hover:text-purple-600">
+                  Home
+                </button>
+                <button onClick={() => smoothScroll('about')} className="block w-full text-left text-gray-700 hover:text-purple-600">
+                  About
+                </button>
+                <button onClick={() => smoothScroll('programs')} className="block w-full text-left text-gray-700 hover:text-purple-600">
+                  Programs
+                </button>
+                <button onClick={() => smoothScroll('testimonials')} className="block w-full text-left text-gray-700 hover:text-purple-600">
+                  Reviews
+                </button>
+                <button onClick={() => smoothScroll('contact')} className="block w-full text-left text-gray-700 hover:text-purple-600">
+                  Contact
+                </button>
+                <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-500">
+                  Enroll Now
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center">
+            <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
+              <Award className="h-5 w-5 text-yellow-500" />
+              <span className="text-sm font-medium text-gray-700">Licensed & Accredited Daycare</span>
+            </div>
+            
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8">
+              <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
+                Where Every Child
+              </span>
+              <br />
+              <span className="text-gray-800">Shines Bright ✨</span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto">
+              Creating a nurturing, safe, and fun environment where your little ones can learn, grow, and discover their unique talents.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button size="lg" className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-3 text-lg">
+                Schedule a Tour
+              </Button>
+              <Button size="lg" variant="outline" className="border-2 border-purple-200 hover:bg-purple-50 px-8 py-3 text-lg">
+                Learn More
+              </Button>
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-purple-600 mb-2">15+</div>
+              <div className="text-gray-600">Years Experience</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-pink-600 mb-2">200+</div>
+              <div className="text-gray-600">Happy Families</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">1:4</div>
+              <div className="text-gray-600">Teacher Ratio</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-green-600 mb-2">5★</div>
+              <div className="text-gray-600">Parent Rating</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <Badge className="mb-4 bg-purple-100 text-purple-700 hover:bg-purple-100">Why Choose Us</Badge>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+              Built on Love, Trust & Excellence
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We provide more than childcare – we create a foundation for lifelong learning and growth.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map(service => (
+              <ServicesCard
+              service={service}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Programs Section */}
+      <section id="programs" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <Badge className="mb-4 bg-pink-100 text-pink-700 hover:bg-pink-100">Our Programs</Badge>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+              Age-Appropriate Learning Adventures
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Carefully designed programs that grow with your child, from infancy through preschool.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {programs.map((program, index) => (
+              <Card key={index} className={`${program.color} border-2 hover:shadow-xl transition-all duration-300`}>
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-2">
+                    <CardTitle className="text-2xl font-bold text-gray-900">
+                      {program.title}
+                    </CardTitle>
+                    <Baby className="h-8 w-8 text-purple-500" />
+                  </div>
+                  <Badge variant="secondary" className="w-fit">
+                    {program.age}
+                  </Badge>
+                  <CardDescription className="text-gray-700 text-base mt-4">
+                    {program.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {program.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center space-x-3">
+                        <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <Button className="w-full mt-6 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
+                    Learn More
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <Badge className="mb-4 bg-blue-100 text-blue-700 hover:bg-blue-100">Testimonials</Badge>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+              What Parents Say About Us
+            </h2>
+            <p className="text-xl text-gray-600">
+              Don't just take our word for it – hear from our amazing families!
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial) => (
+              <TestimonialCard
+              testimonial={testimonial}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <Badge className="mb-4 bg-green-100 text-green-700 hover:bg-green-100">Get in Touch</Badge>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+              Ready to Get Started?
+            </h2>
+            <p className="text-xl text-gray-600">
+              Contact us today to schedule a tour and see why families love Little Stars!
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <Card className="border-0 shadow-xl">
+              <CardHeader>
+                <CardTitle className="text-2xl text-gray-900">Send us a message</CardTitle>
+                <CardDescription>
+                  We'll get back to you within 24 hours
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium text-gray-700 mb-2 block">First Name</label>
+                    <Input placeholder="John" />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-700 mb-2 block">Last Name</label>
+                    <Input placeholder="Doe" />
+                  </div>
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">Email</label>
+                  <Input type="email" placeholder="john@example.com" />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">Phone</label>
+                  <Input type="tel" placeholder="(555) 123-4567" />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">Child's Age</label>
+                  <Input placeholder="e.g., 2 years old" />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">Message</label>
+                  <Textarea placeholder="Tell us about your childcare needs..." className="min-h-[120px]" />
+                </div>
+                <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
+                  Send Message
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Contact Info */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Visit Our Center</h3>
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <MapPin className="h-6 w-6 text-purple-500 mt-1" />
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Address</h4>
+                      <p className="text-gray-600">123 Rainbow Street<br />Sunshine City, SC 12345</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <Phone className="h-6 w-6 text-purple-500 mt-1" />
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Phone</h4>
+                      <p className="text-gray-600">(555) 123-KIDS</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <Mail className="h-6 w-6 text-purple-500 mt-1" />
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Email</h4>
+                      <p className="text-gray-600">hello@littlestarsdaycare.com</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <Clock className="h-6 w-6 text-purple-500 mt-1" />
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Hours</h4>
+                      <p className="text-gray-600">Monday - Friday: 6:00 AM - 7:00 PM<br />Saturday: 7:00 AM - 6:00 PM</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-8 rounded-2xl">
+                <h4 className="text-xl font-bold text-gray-900 mb-4">Special Offer</h4>
+                <p className="text-gray-700 mb-4">
+                  Schedule a tour this month and receive 50% off your first week of care!
+                </p>
+                <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
+                  Schedule Tour Now
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer 
+      smoothScroll={smoothScroll}
+      />
+    </div>
+  )
+}
+
+export default DaycareLandingPage
