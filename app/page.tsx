@@ -10,29 +10,22 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
-  Star,
-  Heart,
-  Shield,
-  Users,
   Clock,
   Award,
   Phone,
   Mail,
   MapPin,
-  Menu,
-  X,
   Baby,
   CheckCircle,
 } from "lucide-react";
 import TestimonialCard from "@/components/common/TestimonialCard";
 import Footer from "@/components/common/Footer";
 import ServicesCard from "@/components/common/ServicesCard";
-import { navItems, programs, services, stats, testimonials } from "@/data/data";
+import { programs, services, stats, testimonials } from "@/data/data";
 import StatsCard from "@/components/common/StatsCard";
-import NavButton from "@/components/common/NavButton";
+import ContactForm from "@/components/common/ContactForm";
+import Navbar from "@/components/common/Navbar";
 
 const DaycareLandingPage: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,70 +48,7 @@ const DaycareLandingPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
       {/* Navigation */}
-      <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-lg"
-            : "bg-transparent"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                <Star className="h-6 w-6 text-white" />
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Little Stars
-              </span>
-            </div>
-
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navItems.map((item) => (
-                <NavButton
-                  text={item}
-                  smoothScroll={smoothScroll}
-                  isMenuOpen={isMenuOpen}
-                />
-              ))}
-              <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
-                Enroll Now
-              </Button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? (
-                <X className="size-6" />
-              ) : (
-                <Menu className="size-6" />
-              )}
-            </button>
-          </div>
-
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="md:hidden absolute top-16 rounded-lg inset-x-0 bg-white shadow-lg">
-              <div className="px-4 py-6 space-y-4">
-                {navItems.map((item) => (
-                  <NavButton
-                    text={item}
-                    smoothScroll={smoothScroll}
-                    isMenuOpen={isMenuOpen}
-                  />
-                ))}
-                <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-500">
-                  Enroll Now
-                </Button>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
+      <Navbar smoothScroll={smoothScroll} />
 
       {/* Hero Section */}
       <section id="home" className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
@@ -290,62 +220,7 @@ const DaycareLandingPage: React.FC = () => {
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <Card className="border-0 shadow-xl">
-              <CardHeader>
-                <CardTitle className="text-2xl text-gray-900">
-                  Send us a message
-                </CardTitle>
-                <CardDescription>
-                  We'll get back to you within 24 hours
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-gray-700 mb-2 block">
-                      First Name
-                    </label>
-                    <Input placeholder="John" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-gray-700 mb-2 block">
-                      Last Name
-                    </label>
-                    <Input placeholder="Doe" />
-                  </div>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">
-                    Email
-                  </label>
-                  <Input type="email" placeholder="john@example.com" />
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">
-                    Phone
-                  </label>
-                  <Input type="tel" placeholder="(555) 123-4567" />
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">
-                    Child's Age
-                  </label>
-                  <Input placeholder="e.g., 2 years old" />
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">
-                    Message
-                  </label>
-                  <Textarea
-                    placeholder="Tell us about your childcare needs..."
-                    className="min-h-[120px]"
-                  />
-                </div>
-                <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
-                  Send Message
-                </Button>
-              </CardContent>
-            </Card>
+            <ContactForm />
 
             {/* Contact Info */}
             <div className="space-y-8">

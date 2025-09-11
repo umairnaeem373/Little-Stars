@@ -7,6 +7,11 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+    safelist: [
+    {
+      pattern: /text-(red|blue|green|pink|purple)-(500|600)/,
+    },
+  ],
   theme: {
   	extend: {
   		backgroundImage: {
