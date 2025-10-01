@@ -12,7 +12,7 @@ export const services: Service[] = [
     icon: <Shield className="h-8 w-8 text-blue-500" />,
     title: "Safe Environment",
     description:
-      "State-of-the-art security systems and child-proofed facilities ensure maximum safety.",
+      "State-of-the-art security systems & child-proofed facilities ensure maximum safety.",
   },
   {
     icon: <Users className="h-8 w-8 text-green-500" />,
