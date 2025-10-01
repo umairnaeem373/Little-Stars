@@ -71,7 +71,7 @@ export const testimonials: Testimonial[] = [
   {
     name: "Sarah Johnson",
     content:
-      "Little Stars has been incredible for our daughter Emma. She's learned so much and made wonderful friends. The teachers are amazing!",
+      "Little Stars has been incredible for our daughter Emily. She's learned so much and made wonderful friends. The teachers are amazing!",
     rating: 5,
     image: "👩‍💼",
   },
