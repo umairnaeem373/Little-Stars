@@ -94,7 +94,7 @@ const DaycareLandingPage: React.FC = () => {
           {/* Stats */}
           <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
-              <StatsCard stat={stat} />
+              <StatsCard key={String(stat.number)} stat={stat} />
             ))}
           </div>
         </div>
@@ -118,7 +118,7 @@ const DaycareLandingPage: React.FC = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service) => (
-              <ServicesCard service={service} />
+              <ServicesCard key={service.title} service={service} />
             ))}
           </div>
         </div>
@@ -190,13 +190,16 @@ const DaycareLandingPage: React.FC = () => {
               What Parents Say About Us
             </h2>
             <p className="text-xl text-gray-600">
-              Don't just take our word for it – hear from our amazing families!
+              {`Don't just take our word for it – hear from our amazing families!`}
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial) => (
-              <TestimonialCard testimonial={testimonial} />
+              <TestimonialCard
+                key={testimonial.name}
+                testimonial={testimonial}
+              />
             ))}
           </div>
         </div>

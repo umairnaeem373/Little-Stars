@@ -110,7 +110,7 @@ const ContactForm: React.FC = () => {
           Send us a message
         </CardTitle>
         <CardDescription className="dark:text-gray-400 transition-colors duration-300">
-          We'll get back to you within 24 hours
+          {`We'll get back to you within 24 hours`}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -206,7 +206,7 @@ const ContactForm: React.FC = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-gray-700 dark:text-gray-300 transition-colors duration-300">
-                    Child's Age
+                    {`Child's Age`}
                   </FormLabel>
                   <FormControl>
                     <Input

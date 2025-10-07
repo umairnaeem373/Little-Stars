@@ -18,7 +18,7 @@ const TestimonialCard = ({testimonial}: Props) => {
                     ))}
                   </div>
                   <p className="text-gray-700 line-clamp-3 mb-6 italic leading-relaxed">
-                    "{testimonial.content}"
+                    {`"${testimonial.content}"`}
                   </p>
                   <div className="flex items-center">
                     <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center text-2xl mr-4">
