@@ -64,7 +64,7 @@ const ContactForm: React.FC = () => {
 
   const onSubmit = async (values: FormValues) => {
     try {
-      // Here you would typically send the data to your API
+      
       console.log("Form submitted:", values);
 
       const res = await fetch("http://192.168.18.10:8000/api/v1/contactUs", {

@@ -12,7 +12,7 @@ export const services: Service[] = [
     icon: <Shield className="h-8 w-8 text-blue-500" />,
     title: "Safe Environment",
     description:
-      "State-of-the-art security systems and child-proofed facilities ensure maximum safety.",
+      "State-of-the-art security systems & child-proofed facilities ensure maximum safety.",
   },
   {
     icon: <Users className="h-8 w-8 text-green-500" />,
@@ -71,7 +71,7 @@ export const testimonials: Testimonial[] = [
   {
     name: "Sarah Johnson",
     content:
-      "Little Stars has been incredible for our daughter Emma. She's learned so much and made wonderful friends. The teachers are amazing!",
+      "Little Stars has been incredible for our daughter Emily. She's learned so much and made wonderful friends. The teachers are amazing!",
     rating: 5,
     image: "👩‍💼",
   },
