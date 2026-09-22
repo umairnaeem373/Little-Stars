@@ -9,21 +9,21 @@ const Footer = ({smoothScroll}: Props) => {
 
   
   return (
-    <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-card text-card-foreground py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                <Star className="h-6 w-6 text-white" />
+              <div className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center">
+                <Star className="h-6 w-6" />
               </div>
-              <span className="text-2xl font-bold">Little Stars Daycare</span>
+              <span className="text-2xl font-bold text-primary">Little Stars Daycare</span>
             </div>
-            <p className="text-gray-300 mb-6 max-w-md">
+            <p className="text-muted-foreground mb-6 max-w-md">
               Where every child shines bright! Creating nurturing environments
               for growth, learning, and endless possibilities.
             </p>
-            <div className="text-sm text-gray-400">
+            <div className="text-sm text-muted-foreground/80">
               Licensed by the State Department of Children Services
               <br />
               Accredited by the National Association for the Education of Young
@@ -35,25 +35,25 @@ const Footer = ({smoothScroll}: Props) => {
             <div className="space-y-2">
               <button
                 onClick={() => smoothScroll("about")}
-                className="block text-gray-300 hover:text-white transition-colors"
+                className="block text-muted-foreground hover:text-foreground transition-colors"
               >
                 About Us
               </button>
               <button
                 onClick={() => smoothScroll("programs")}
-                className="block text-gray-300 hover:text-white transition-colors"
+                className="block text-muted-foreground hover:text-foreground transition-colors"
               >
                 Programs
               </button>
               <a
                 href="#"
-                className="block text-gray-300 hover:text-white transition-colors"
+                className="block text-muted-foreground hover:text-foreground transition-colors"
               >
                 Admissions
               </a>
               <a
                 href="#"
-                className="block text-gray-300 hover:text-white transition-colors"
+                className="block text-muted-foreground hover:text-foreground transition-colors"
               >
                 Calendar
               </a>
@@ -61,7 +61,7 @@ const Footer = ({smoothScroll}: Props) => {
           </div>
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact</h4>
-            <div className="space-y-2 text-gray-300">
+            <div className="space-y-2 text-muted-foreground">
               <p>123 Rainbow Street</p>
               <p>Sunshine City, SC 12345</p>
               <p>(555) 123-KIDS</p>
@@ -69,7 +69,7 @@ const Footer = ({smoothScroll}: Props) => {
             </div>
           </div>
         </div>
-        <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+        <div className="border-t border-border mt-12 pt-8 text-center text-muted-foreground/80">
           <p>
             &copy; {new Date().getFullYear()} Little Stars Daycare. All rights reserved. Made
             with ❤️ for families.

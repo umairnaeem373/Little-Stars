@@ -39,7 +39,6 @@ export const programs: Program[] = [
       "Tummy time",
       "Sensory play",
     ],
-    color: "bg-pink-50 border-pink-200",
   },
   {
     title: "Toddler Program",
@@ -51,7 +50,6 @@ export const programs: Program[] = [
       "Social skills",
       "Creative play",
     ],
-    color: "bg-blue-50 border-blue-200",
   },
   {
     title: "Preschool",
@@ -63,7 +61,6 @@ export const programs: Program[] = [
       "Art & music",
       "School preparation",
     ],
-    color: "bg-green-50 border-green-200",
   },
 ];
 

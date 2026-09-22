@@ -16,11 +16,10 @@ export interface Program {
   age: string
   description: string
   features: string[]
-  color: string
 }
 
 export interface Stats {
-    number: String
-    category: String
-    color: String
+    number: string
+    category: string
+    color: string
 }

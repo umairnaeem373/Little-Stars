@@ -1,17 +1,25 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import NavButton from "./NavButton";
 import { navItems } from "@/data/data";
-import { Menu, Star, X } from "lucide-react";
-import Image from "next/image";
-import Logo from "../../app/favicon.ico";
+import { Menu, Star, UserPlus } from "lucide-react";
 import { Button } from "../ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../ui/sheet";
+import ModeToggle from "./ModeToggle";
+import { cn } from "@/lib/utils";
 
 type Props = {
   smoothScroll: (targetId: string) => void;
 };
 
 const Navbar = ({ smoothScroll }: Props) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useLayoutEffect(() => {
@@ -21,7 +29,6 @@ const Navbar = ({ smoothScroll }: Props) => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      setIsMenuOpen((prev) => prev && window.scrollY > 50 && false);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -29,17 +36,20 @@ const Navbar = ({ smoothScroll }: Props) => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-transparent"
-      }`}
+      className={cn(
+        "fixed top-0 w-full z-50 transition-all duration-300",
+        isScrolled
+          ? "bg-background/95 backdrop-blur-md shadow-lg"
+          : "bg-transparent"
+      )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                <Star className="h-6 w-6 text-white" />
+              <div className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center">
+                <Star className="h-6 w-6" />
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold text-primary">
                 Little Stars
               </span>
             </div>
@@ -51,45 +61,55 @@ const Navbar = ({ smoothScroll }: Props) => {
                 key={item.substring(3)}
                 text={item}
                 smoothScroll={smoothScroll}
-                isMenuOpen={isMenuOpen}
               />
             ))}
-            <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-500">
+            <Button>
+              <UserPlus />
               Enroll Now
             </Button>
+            <ModeToggle />
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-primary"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? (
-              <X className="size-6" />
-            ) : (
-              <Menu className="size-6" />
-            )}
-          </button>
+          {/* Mobile + Theme Toggle */}
+          <div className="flex items-center gap-2 md:hidden">
+            <ModeToggle />
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon-lg" aria-label="Open menu">
+                  <Menu className="size-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right">
+                <SheetHeader>
+                  <SheetTitle>Little Stars</SheetTitle>
+                  <SheetDescription>
+                    Navigate through our daycare.
+                  </SheetDescription>
+                </SheetHeader>
+                <div className="mt-4 flex flex-col gap-1">
+                  {navItems.map((item) => (
+                    <NavButton
+                      key={item.substring(2)}
+                      text={item}
+                      smoothScroll={smoothScroll}
+                      mobile
+                    />
+                  ))}
+                </div>
+                <SheetFooter>
+                  <Button
+                    onClick={() => smoothScroll("contact")}
+                    className="w-full"
+                    size="lg"
+                  >
+                    <UserPlus />
+                    Enroll Now
+                  </Button>
+                </SheetFooter>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden absolute top-16 rounded-b-lg inset-x-0 bg-white shadow-lg">
-            <div className="px-4 py-6 space-y-4">
-              {navItems.map((item) => (
-                <NavButton
-                  key={item.substring(2)}
-                  text={item}
-                  smoothScroll={smoothScroll}
-                  isMenuOpen={isMenuOpen}
-                />
-              ))}
-            </div>
-            <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-500">
-              Enroll Now
-            </Button>
-          </div>
-        )}
       </div>
     </nav>
   );

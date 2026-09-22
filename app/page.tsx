@@ -18,6 +18,7 @@ import {
   MapPin,
   Baby,
   CheckCircle,
+  CalendarDays,
 } from "lucide-react";
 import TestimonialCard from "@/components/common/TestimonialCard";
 import Footer from "@/components/common/Footer";
@@ -29,15 +30,8 @@ import Navbar from "@/components/common/Navbar";
 
 const DaycareLandingPage: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+
 
   const smoothScroll = useCallback((targetId: string) => {
     const element = document.getElementById(targetId);
@@ -46,7 +40,7 @@ const DaycareLandingPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
+    <div className="min-h-screen bg-background">
       {/* Navigation */}
       <Navbar smoothScroll={smoothScroll} />
 
@@ -54,37 +48,39 @@ const DaycareLandingPage: React.FC = () => {
       <section id="home" className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
-            <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
-              <Award className="h-5 w-5 text-yellow-500" />
-              <span className="text-sm font-medium text-gray-700">
-                Licensed & Accredited Daycare
-              </span>
-            </div>
+            <Badge
+              variant="secondary"
+              className="p-4 text-sm mb-8"
+            >
+              <Award className="h-4 w-4 text-yellow-500" />
+              Licensed &amp; Accredited Daycare
+            </Badge>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8">
-              <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
                 Where Every Child
               </span>
               <br />
-              <span className="text-gray-800">Shines Bright ✨</span>
+              <span className="text-primary">Shines Bright ✨</span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto">
               Creating a nurturing, safe, and fun environment where your little
               ones can learn, grow, and discover their unique talents.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-3 text-lg"
+                className="px-8 py-3 text-lg w-full sm:w-auto"
               >
+                <CalendarDays />
                 Schedule a Tour
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-purple-200 hover:bg-purple-50 px-8 py-3 text-lg"
+                className="border-2 border-border hover:bg-accent px-8 py-3 text-lg w-full sm:w-auto"
               >
                 Learn More
               </Button>
@@ -101,16 +97,16 @@ const DaycareLandingPage: React.FC = () => {
       </section>
 
       {/* Services Section */}
-      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-card">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-purple-100 text-purple-700 hover:bg-purple-100">
+            <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/10">
               Why Choose Us
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
               Built on Love, Trust & Excellence
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               We provide more than childcare – we create a foundation for
               lifelong learning and growth.
             </p>
@@ -128,48 +124,48 @@ const DaycareLandingPage: React.FC = () => {
       <section id="programs" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-pink-100 text-pink-700 hover:bg-pink-100">
+            <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/10">
               Our Programs
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
               Age-Appropriate Learning Adventures
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Carefully designed programs that grow with your child, from
               infancy through preschool.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 md:grid-rows-[auto_1fr]">
             {programs.map((program, index) => (
               <Card
                 key={index}
-                className={`${program.color} border-2 hover:shadow-xl transition-all duration-300`}
+                className="border-2 row-span-2 grid-rows-subgrid content-start hover:shadow-xl transition-all duration-300"
               >
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
-                    <CardTitle className="text-2xl font-bold text-gray-900">
+                    <CardTitle className="text-2xl font-bold text-foreground">
                       {program.title}
                     </CardTitle>
-                    <Baby className="h-8 w-8 text-purple-500" />
+                    <Baby className="h-8 w-8 text-primary" />
                   </div>
                   <Badge variant="secondary" className="w-fit">
                     {program.age}
                   </Badge>
-                  <CardDescription className="text-gray-700 text-base mt-4">
+                  <CardDescription className="text-muted-foreground text-base mt-4">
                     {program.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
+                <CardContent className="flex flex-col h-full">
+                  <div className="space-y-3 flex-1">
                     {program.features.map((feature, idx) => (
                       <div key={idx} className="flex items-center space-x-3">
-                        <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                        <span className="text-gray-700">{feature}</span>
+                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground">{feature}</span>
                       </div>
                     ))}
                   </div>
-                  <Button className="w-full mt-6 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
+                  <Button className="w-full mt-6">
                     Learn More
                   </Button>
                 </CardContent>
@@ -180,16 +176,16 @@ const DaycareLandingPage: React.FC = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section id="reviews" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="reviews" className="py-20 px-4 sm:px-6 lg:px-8 bg-card">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-blue-100 text-blue-700 hover:bg-blue-100">
+            <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/10">
               Testimonials
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
               What Parents Say About Us
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-muted-foreground">
               {`Don't just take our word for it – hear from our amazing families!`}
             </p>
           </div>
@@ -209,13 +205,13 @@ const DaycareLandingPage: React.FC = () => {
       <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-green-100 text-green-700 hover:bg-green-100">
+            <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/10">
               Get in Touch
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
               Ready to Get Started?
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-muted-foreground">
               Contact us today to schedule a tour and see why families love
               Little Stars!
             </p>
@@ -228,15 +224,15 @@ const DaycareLandingPage: React.FC = () => {
             {/* Contact Info */}
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-8">
+                <h3 className="text-2xl font-bold text-foreground mb-8">
                   Visit Our Center
                 </h3>
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
-                    <MapPin className="h-6 w-6 text-purple-500 mt-1" />
+                    <MapPin className="h-6 w-6 text-primary mt-1" />
                     <div>
-                      <h4 className="font-semibold text-gray-900">Address</h4>
-                      <p className="text-gray-600">
+                      <h4 className="font-semibold text-foreground">Address</h4>
+                      <p className="text-muted-foreground">
                         123 Rainbow Street
                         <br />
                         Sunshine City, SC 12345
@@ -244,26 +240,26 @@ const DaycareLandingPage: React.FC = () => {
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <Phone className="h-6 w-6 text-purple-500 mt-1" />
+                    <Phone className="h-6 w-6 text-primary mt-1" />
                     <div>
-                      <h4 className="font-semibold text-gray-900">Phone</h4>
-                      <p className="text-gray-600">(555) 123-KIDS</p>
+                      <h4 className="font-semibold text-foreground">Phone</h4>
+                      <p className="text-muted-foreground">(555) 123-KIDS</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <Mail className="h-6 w-6 text-purple-500 mt-1" />
+                    <Mail className="h-6 w-6 text-primary mt-1" />
                     <div>
-                      <h4 className="font-semibold text-gray-900">Email</h4>
-                      <p className="text-gray-600">
+                      <h4 className="font-semibold text-foreground">Email</h4>
+                      <p className="text-muted-foreground">
                         hello@littlestarsdaycare.com
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <Clock className="h-6 w-6 text-purple-500 mt-1" />
+                    <Clock className="h-6 w-6 text-primary mt-1" />
                     <div>
-                      <h4 className="font-semibold text-gray-900">Hours</h4>
-                      <p className="text-gray-600">
+                      <h4 className="font-semibold text-foreground">Hours</h4>
+                      <p className="text-muted-foreground">
                         Monday - Friday: 6:00 AM - 7:00 PM
                         <br />
                         Saturday: 7:00 AM - 6:00 PM
@@ -273,15 +269,16 @@ const DaycareLandingPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-8 rounded-2xl">
-                <h4 className="text-xl font-bold text-gray-900 mb-4">
+              <div className="bg-card p-8 rounded-2xl">
+                <h4 className="text-xl font-bold text-foreground mb-4">
                   Special Offer
                 </h4>
-                <p className="text-gray-700 mb-4">
+                <p className="text-muted-foreground mb-4">
                   Schedule a tour this month and receive 50% off your first week
                   of care!
                 </p>
-                <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
+                <Button>
+                  <CalendarDays />
                   Schedule Tour Now
                 </Button>
               </div>

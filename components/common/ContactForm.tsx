@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
+import { Send } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -104,12 +105,12 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <Card className="border-0 shadow-xl dark:bg-gray-800 dark:shadow-gray-800/25 transition-colors duration-300">
+    <Card className="border-0 shadow-xl transition-colors duration-300">
       <CardHeader>
-        <CardTitle className="text-2xl text-gray-900 dark:text-gray-100 transition-colors duration-300">
+        <CardTitle className="text-2xl transition-colors duration-300">
           Send us a message
         </CardTitle>
-        <CardDescription className="dark:text-gray-400 transition-colors duration-300">
+        <CardDescription className="transition-colors duration-300">
           {`We'll get back to you within 24 hours`}
         </CardDescription>
       </CardHeader>
@@ -122,17 +123,17 @@ const ContactForm: React.FC = () => {
                 name="firstName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-700 dark:text-gray-300 transition-colors duration-300">
+                    <FormLabel className="transition-colors duration-300">
                       First Name
                     </FormLabel>
                     <FormControl>
                       <Input
                         placeholder="John"
                         {...field}
-                        className="dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 transition-colors duration-300"
+                        className="transition-colors duration-300"
                       />
                     </FormControl>
-                    <FormMessage className="text-red-500 dark:text-red-400" />
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -142,17 +143,17 @@ const ContactForm: React.FC = () => {
                 name="lastName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-700 dark:text-gray-300 transition-colors duration-300">
+                    <FormLabel className="transition-colors duration-300">
                       Last Name
                     </FormLabel>
                     <FormControl>
                       <Input
                         placeholder="Doe"
                         {...field}
-                        className="dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 transition-colors duration-300"
+                        className="transition-colors duration-300"
                       />
                     </FormControl>
-                    <FormMessage className="text-red-500 dark:text-red-400" />
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -163,7 +164,7 @@ const ContactForm: React.FC = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-gray-700 dark:text-gray-300 transition-colors duration-300">
+                  <FormLabel className="transition-colors duration-300">
                     Email
                   </FormLabel>
                   <FormControl>
@@ -171,10 +172,10 @@ const ContactForm: React.FC = () => {
                       type="email"
                       placeholder="john@example.com"
                       {...field}
-                      className="dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 transition-colors duration-300"
+                      className="transition-colors duration-300"
                     />
                   </FormControl>
-                  <FormMessage className="text-red-500 dark:text-red-400" />
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -184,7 +185,7 @@ const ContactForm: React.FC = () => {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-gray-700 dark:text-gray-300 transition-colors duration-300">
+                  <FormLabel className="transition-colors duration-300">
                     Phone
                   </FormLabel>
                   <FormControl>
@@ -192,10 +193,10 @@ const ContactForm: React.FC = () => {
                       type="tel"
                       placeholder="(555) 123-4567"
                       {...field}
-                      className="dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 transition-colors duration-300"
+                      className="transition-colors duration-300"
                     />
                   </FormControl>
-                  <FormMessage className="text-red-500 dark:text-red-400" />
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -205,20 +206,20 @@ const ContactForm: React.FC = () => {
               name="childAge"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-gray-700 dark:text-gray-300 transition-colors duration-300">
+                  <FormLabel className="transition-colors duration-300">
                     {`Child's Age`}
                   </FormLabel>
                   <FormControl>
                     <Input
                       placeholder="e.g., 2 years old"
                       {...field}
-                      className="dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 transition-colors duration-300"
+                      className="transition-colors duration-300"
                     />
                   </FormControl>
-                  <FormDescription className="text-gray-500 dark:text-gray-400 text-sm">
+                  <FormDescription className="text-sm">
                     This helps us provide age-appropriate program information.
                   </FormDescription>
-                  <FormMessage className="text-red-500 dark:text-red-400" />
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -228,30 +229,32 @@ const ContactForm: React.FC = () => {
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-gray-700 dark:text-gray-300 transition-colors duration-300">
+                  <FormLabel className="transition-colors duration-300">
                     Message
                   </FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="Tell us about your childcare needs..."
-                      className="min-h-[120px] dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 transition-colors duration-300"
+                      className="min-h-[120px] transition-colors duration-300"
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription className="text-gray-500 dark:text-gray-400 text-sm">
+                  <FormDescription className="text-sm">
                     Please include any specific questions or requirements you
                     have.
                   </FormDescription>
-                  <FormMessage className="text-red-500 dark:text-red-400" />
+                  <FormMessage />
                 </FormItem>
               )}
             />
 
             <Button
               type="submit"
-              className="w-full bg-primary md:max-w-96 mx-auto block text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all duration-300"
+              size="lg"
+              className="w-full px-6 transition-all duration-300"
               disabled={form.formState.isSubmitting}
             >
+              <Send className={form.formState.isSubmitting ? "animate-pulse" : ""} />
               {form.formState.isSubmitting ? "Sending..." : "Send Message"}
             </Button>
           </form>

@@ -13,10 +13,10 @@ const ServicesCard = ({service}: Props) => {
                   <div className="mb-6 flex justify-center">
                     {service.icon}
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  <h3 className="text-xl font-semibold text-foreground mb-4">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed">
                     {service.description}
                   </p>
                 </CardContent>
